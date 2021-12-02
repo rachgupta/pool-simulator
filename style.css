@@ -32,3 +32,19 @@ button, input[type="button"] {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
+  .centered {
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -ms-transform: translate(-40%, -60%);
+    transform: translate(-40%, -60%);
+  }
+  .bottom {
+    margin: 0;
+    position: absolute;
+    top: 115%;
+    left: 50%;
+    -ms-transform: translate(-40%, -60%);
+    transform: translate(-40%, -60%);
+  }

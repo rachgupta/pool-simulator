@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<link href="style.css" rel="stylesheet">
+
 <head>
     <div class="header">
         <h1 align="center", >Pool50!</h1>
@@ -10,12 +12,21 @@
     	* { padding: 0; margin: 0; }
     	canvas { background: #eee; display: block; margin: 0 auto; }
     </style>
+    <script>
+        function myFunction() {
+            window.location.href="instructions.html";
+        }
+        </script>
 </head>
+
 <body style="background-color:grey;">
 
 <canvas id="myCanvas" width="1024" height="566"></canvas>
 
 <script src="basic_board.js"></script>
+<div class="bottom">
+    <button type="button" onclick="myFunction()">Click to learn!</button>
+</div>
 
 </body>
 </html>
