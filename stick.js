@@ -1,7 +1,3 @@
-
-
-
-
 // const Stick = {
 //     xpost: 1,
 //     ypost: 1,
@@ -43,8 +39,9 @@
 // this.stick.draw();
 // this.stick.update();
 
-function Stick(){
-    this.position = {x: 0, y: 400};
+function Stick(position){
+    this.positionx = position.x;
+    this.positiony = position.y;
 }
 
 Stick.prototype.draw = function(){
@@ -52,10 +49,12 @@ Stick.prototype.draw = function(){
     var ctx = c.getContext("2d");
     stick_img = new Image();
     stick_img.src = "spr_stick.png";
+    x = this.positionx
+    y = this.positiony
     stick_img.onload = function(){
-        ctx.drawImage(stick_img, 0, 400);
+        ctx.drawImage(stick_img, x, y);
     }
 }
-let mystick = new Stick();
-mystick.draw();
-
+Stick.prototype.updatepos = function(){
+    this.positionx+=50
+}

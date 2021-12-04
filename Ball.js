@@ -9,7 +9,7 @@ function Ball(type, position) {
   }
   else if(type=="ball")
   {
-    this.imgsrc = "ball(1).png"
+    this.imgsrc = "ball.png"
   }
     this.type = type;
     this.positionX = 100;
