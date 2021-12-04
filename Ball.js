@@ -12,21 +12,32 @@ function Ball(type, position) {
     this.imgsrc = "ball.png"
   }
     this.type = type;
-    this.positionX = 100;
-    this.positionY = 200;
+    this.positionX = position.x;
+    this.positionY = position.y;
     //find some vector2D function for position and velocity
-    this.velocity = Vector2(0,0);
+    this.velocityX = 0;
+    this.velocityY = 0;
     this.moving = false;
   }
 
   Ball.prototype.draw = function(){
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
-    ball_img = new Image();
+    let ball_img = new Image();
     ball_img.src = this.imgsrc;
-    x = this.positionX;
-    y = this.positionY
+    let x = this.positionX;
+    let y = this.positionY;
     ball_img.onload = function(){
         ctx.drawImage(ball_img, x, y);
     }
-}
+  }
+  Ball.prototype.update = function(timestep){
+    this.positionX = this.positionX + (timestep*this.velocityX)
+    this.positionY = this.positionY + (timestep*this.velocityY)
+  }
+  Ball.prototype.checkIfInPocket = function(){
+    if(this.positionX>0)
+    {
+      console.log('ok');
+    }
+  }
