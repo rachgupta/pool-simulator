@@ -50,11 +50,10 @@ function Stick(){
 Stick.prototype.draw = function(){
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
-    var img = document.getElementById("spr_stick");
     stick_img = new Image();
     stick_img.src = "spr_stick.png";
     stick_img.onload = function(){
-        ctx.drawImage(stick_img, this.position.x, this.position.y);
+        ctx.drawImage(stick_img, 0, 400);
     }
 }
 let mystick = new Stick();
