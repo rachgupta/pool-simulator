@@ -8,6 +8,12 @@ base_image.onload = function(){
 }
 
 
+let myball = new Ball("ball", new Vector2(100,200));
+myball.draw();
+
+let mystick = new Stick();
+mystick.draw();
+
 
 
 

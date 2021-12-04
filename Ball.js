@@ -9,7 +9,7 @@ function Ball(type, position) {
   }
   else if(type=="ball")
   {
-    this.imgsrc = "ball.png"
+    this.imgsrc = "ball(1).png"
   }
     this.type = type;
     this.positionX = 100;
@@ -30,6 +30,3 @@ function Ball(type, position) {
         ctx.drawImage(ball_img, x, y);
     }
 }
-
-let myball = new Ball("8-ball", new Vector2(100,200));
-myball.draw();
