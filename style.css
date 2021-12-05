@@ -48,3 +48,19 @@ button, input[type="button"] {
     -ms-transform: translate(-40%, -60%);
     transform: translate(-40%, -60%);
   }
+  .info {
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    -ms-transform: translate(-40%, -60%);
+    transform: translate(-40%, -60%);
+  }
+  .scorebar {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    -ms-transform: translate(-40%, -60%);
+    transform: translate(-40%, -60%);
+  }
