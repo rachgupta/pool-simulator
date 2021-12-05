@@ -1,6 +1,7 @@
 function Game(){
     let cue_ball_position = new Vector2(260,240);
     this.cue_ball = new Ball("cue", cue_ball_position);
+    this.cue_ball.velocity = new Vector2(1,0);
     this.eight_ball = new Ball("8-ball", new Vector2(765,240));
     let mystick = new Stick(new Vector2(cue_ball_position.x-600, cue_ball_position.y));
     this.stick = mystick;
@@ -40,17 +41,15 @@ Game.prototype.initial_ball_setup = function(){
 }
 Game.prototype.draw_board = function(){
     let base_image = new Image();
-    base_image.src = "pool.png";
+    base_image.src = "images/pool.png";
     let ctx = this.ctx;
     base_image.onload = function(){
         ctx.drawImage(base_image,0,0);
     }
 }
 Game.prototype.clear = function(){
-    console.log(this.ctx)
-    console.log(this.c.width,this.c.height)
-    this.ctx.clearRect(0, 0, 1000, 1000)
-    
+    let c = this.ctx
+    c.clearRect(0, 0, 1000, 500)
 }
 
  Game.prototype.draw = function(){
@@ -66,17 +65,51 @@ Game.prototype.clear = function(){
         }
     }
  }
+Game.prototype.animate_wrapper = function () {
+    function animate(testBall){
+        myGame.draw();
+        if(testBall.onBoard==true)
+        {
+            testBall.draw(); 
+        }
+        //testBall.velocity = new Vector2(1,1);
+        testBall.update(1);
+        if(testBall.positionX<1000)
+        {
+            setTimeout(() => {window.requestAnimationFrame(animate(testBall))}
+                ,1);
+            setTimeout(() => {myGame.draw_board()}
+                ,1);
+        }
+        else
+        {
+            let w = 3;
+        }
+    }
+    
+    let b = this.balls;
+    for (let i = 0; i < b.length; ++i)
+    {
+        animate(b[i])
+    }
+                      // draw image at current position
+    // let balls = this.balls
+    // for(let i = 2; i < balls.length; ++i)
+    // {
 
-Game.prototype.redraw = function(){
-    setTimeout(() => {myGame.clear()}, 1000)
+    //animate(testBall);
+    // }        // loop
+}
+Game.prototype.start = function(){
+    
+    //loadImages(myGame.redraw());
     this.draw_board();
     this.draw();
-    this.checkGameStatus();
-
+    this.animate_wrapper();
 }
 Game.prototype.update = function(timestep){
     let s = this.stick;
-    s.updatepos(new Vector2(200,200))
+    //s.updatepos(new Vector2(200,200))
 
     let b = this.balls;
     for (let i = 0; i < b.length; ++i)
@@ -101,16 +134,19 @@ Game.prototype.checkGameStatus = function(){
                 this.points = this.points + 1;
             }
         }
-        if(points == 14)
+        if(this.points == 14)
         {
             //this.game_won()
         }
     }
+    var element = document.getElementById("score");
+    element.innerHTML = "Your score is" + this.points;
 }
 // let cue = this.cue_ball
 // console.log(this.cue_ball)
 let myGame = new Game();
-myGame.draw_board();
-myGame.draw();
+
+//myGame.start();
+myGame.start();
 //myGame.update(0.10);
 //myGame.redraw();

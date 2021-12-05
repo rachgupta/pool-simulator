@@ -28,17 +28,25 @@
 </head>
 
 <body style="background-color:grey;">
+<form>
+    <label for="xvel">X velocity:</label><br>
+    <input type="text" id="xvel" name="xvel"><br>
+    <label for="yvel">Y velocity:</label><br>
+    <input type="text" id="yvel" name="yvel">
+    <input type="submit" value="Submit">
+</form>
 
 <canvas id="myCanvas" width="1000" height="500"></canvas>
 
 <script src="Vector2.js"></script>
+<script src="Load.js"></script>
 <script src="Ball.js"></script>
 <script src="Stick.js"></script>
 <script src="Game.js"></script>
-<script> src ="Mouse.js"</script>
-<!-- <script>
-    loadAssets(Game.drawboard())
-</script> -->
+<!-- <script> src ="Mouse.js"</script> -->
+<script>
+    //loadImages(myGame.redraw())
+</script>
 
 
 </body>

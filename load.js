@@ -1,28 +1,34 @@
-let sprites ={};
-let assetsStillLoading = 0;
-function assetsLoadingLoop(callback){
-    if(assetsStillLoading){
-        requestAnimationFrame(assetsLoadingLoop.bind(this, callback));
+let images ={};
+let imgs_still_loading = 0;
+function imageLoadingLoop(callback){
+    if(imgs_still_loading){
+        requestAnimationFrame(imageLoadingLoop.bind(this, callback));
     }
     else{
         callback()
     }
 }
 
-function loadAssets(callbacks){
-    function loadSprite(fileName){
-        assetsStillLoading++;
-        let spriteImage  = new Image();
-        spriteImage.src=fileNames;
+function loadImages(callback){
+    function loadImage(fileName){
+        console.log("In load");
+        imgs_still_loading++;
+        let img  = new Image();
+        img.src="./images/"+fileName;
 
-        spriteImage.onload = function(){
-            assetsStillLoading--;
+        img.onload = function(){
+            imgs_still_loading--;
         }
-
-        return spriteImage;
+        console.log(img)
+        return img;
     }
-    sprites.background = loadSprite('pool.png');
-    sprites.stick = loadSprite('spr_stick.png')
-    assetsLoadingLoop(callback)
+    console.log("in images")
+    images.background = loadImage('pool.png');
+    images.stick = loadImage('pool_cue.png');
+    images.cue_ball = loadImage('cue.png');
+    images.eight_ball = loadImage('8-ball.png');
+    images.ball = loadImage('ball.png');
+    console.log(images);
+    imageLoadingLoop(callback);
 }
 

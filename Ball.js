@@ -1,48 +1,57 @@
 function Ball(type, position) {
   if(type=="8-ball")
   {
-    this.imgsrc = "8-ball.png"
+    this.imgsrc = "images/8-ball.png";
   }
   else if(type=="cue")
   {
-    this.imgsrc = "cue.png"
+    this.imgsrc = "images/cue.png";
   }
   else if(type=="ball")
   {
-    this.imgsrc = "ball.png"
+    this.imgsrc = "images/ball.png";
   }
     this.type = type;
     this.positionX = position.x;
     this.positionY = position.y;
     //find some vector2D function for position and velocity
-    this.velocityX = 0;
-    this.velocityY = 0;
+    this.velocity = Vector2(0,0);
     this.moving = false;
     this.onBoard = true;
+    this.isLoaded = false;
+    //let ball_img = new Image();
+    //ball_img.src = this.imgsrc;
+    //ball_img.onload = function(){
+    //  this.isLoaded = true;
+    //  this.ball_img = ball_img;
+    //}
   }
 
   Ball.prototype.draw = function(){
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
-    let ball_img = new Image();
-    ball_img.src = this.imgsrc;
     let x = this.positionX;
     let y = this.positionY;
-    ball_img.onload = function(){
-        ctx.drawImage(ball_img, x, y);
+    let ball_img = new Image();
+    ball_img.src = this.imgsrc;
+    ball_img.onload = function()
+    {
+      ctx.drawImage(ball_img, x, y);
     }
     if(this.checkIfPoint())
     {
       this.pointDing();
-      if(type!="cue")
+      if(this.type!="cue")
       {
         this.onBoard = false;
       }
     }
   }
   Ball.prototype.update = function(timestep){
-    this.positionX = this.positionX + (timestep*this.velocityX)
-    this.positionY = this.positionY + (timestep*this.velocityY)
+    let velocityX = this.velocity.x;
+    let velocityY = this.velocity.y;
+    this.positionX = this.positionX + (timestep*velocityX)
+    this.positionY = this.positionY + (timestep*velocityY)
   }
   Ball.prototype.checkIfPoint = function(){
     if(this.positionX>910 && (this.positionY<50 || this.positionY>425))
@@ -65,3 +74,20 @@ function Ball(type, position) {
     'ding.mp3');
     audio.play();
   }
+
+
+// var imgTag = new Image();
+// var canvas = document.getElementById('icanvas');
+// var ctx = canvas.getContext("2d");
+// var x = canvas.width;
+// var y = 0;
+
+// imgTag.onload = animate;
+// imgTag.src = "http://i.stack.imgur.com/Rk0DW.png";   // load image
+
+// function animate() {
+//   ctx.clearRect(0, 0, canvas.width, canvas.height);  // clear canvas
+//   ctx.drawImage(imgTag, x, y);                       // draw image at current position
+//   x -= 4;
+//   if (x > 250) requestAnimationFrame(animate)        // loop
+// }
