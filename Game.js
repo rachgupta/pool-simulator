@@ -86,7 +86,8 @@ Game.prototype.animate_wrapper = function () {
             let w = 3;
         }
     }
-    
+    let c = this.cue_ball
+    animate(c)
     let b = this.balls;
     for (let i = 0; i < b.length; ++i)
     {
