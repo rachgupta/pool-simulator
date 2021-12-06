@@ -14,11 +14,14 @@ function Ball(type, position) {
     this.type = type;
     this.positionX = position.x;
     this.positionY = position.y;
+    this.position = position;
+    this.acceleration = -0.05
     //find some vector2D function for position and velocity
-    this.velocity = Vector2(0,0);
+    this.velocity = new Vector2(0,0);
     this.moving = false;
     this.onBoard = true;
     this.isLoaded = false;
+    this.cue_in_pocket = false;
     //let ball_img = new Image();
     //ball_img.src = this.imgsrc;
     //ball_img.onload = function(){
@@ -45,14 +48,23 @@ function Ball(type, position) {
       {
         this.onBoard = false;
       }
+      else
+      {
+        this.cue_in_pocket = true;
+      }
     }
   }
   Ball.prototype.update = function(timestep){
-    let velocityX = this.velocity.x;
-    let velocityY = this.velocity.y;
-    this.positionX = this.positionX + (timestep*velocityX)
-    this.positionY = this.positionY + (timestep*velocityY)
+    let v = this.velocity;
+    let velocityX = v.x;// + (timestep * this.acceleration);
+    let velocityY = v.y;// + (timestep * this.acceleration);
+    this.velocity = new Vector2(velocityX, velocityY);
+    this.positionX = this.positionX + (timestep*velocityX);
+    this.positionY = this.positionY + (timestep*velocityY);
+    this.position = new Vector2(this.positionX, this.positionY);
+    console.log(this.position)
   }
+
   Ball.prototype.checkIfPoint = function(){
     if(this.positionX>910 && (this.positionY<50 || this.positionY>425))
     {
@@ -74,6 +86,12 @@ function Ball(type, position) {
     'ding.mp3');
     audio.play();
   }
+
+  //Ball.prototype.collideWall() = function(ballCollided){
+  //  let x = 7;
+    //velocity of ball is negated
+  //}
+  
 
 
 // var imgTag = new Image();
