@@ -86,8 +86,12 @@ Game.prototype.animate_wrapper = function () {
             let w = 3;
         }
     }
-    let c = this.cue_ball
-    animate(c)
+    var xv = document.getElementById('xvel').value;
+    var yv = document.getElementById('yvel').value;
+    console.log(xv);
+    console.log(yv);
+
+    this.cue_ball.velocity = new Vector2(parseInt(document.getElementById('xvel').value), parseInt(document.getElementById('yvel').value));
     let b = this.balls;
     for (let i = 0; i < b.length; ++i)
     {
