@@ -1,35 +1,32 @@
+//Create ball class 
 function Ball(type, position) {
+  //Assign different image based on the ball type
   if(type=="8-ball")
   {
+    //Create 8-ball
     this.imgsrc = "images/8-ball.png";
   }
   else if(type=="cue")
   {
+    //Create cue ball
     this.imgsrc = "images/cue.png";
   }
   else if(type=="ball")
   {
+    //Create the red balls
     this.imgsrc = "images/ball.png";
   }
     this.type = type;
     this.positionX = position.x;
     this.positionY = position.y;
     this.position = position;
+    //Create acceleration - decreases the speed of the balls over time
     this.acceleration = -0.05
-    //find some vector2D function for position and velocity
+    //Find some vector2D function for position and velocity
     this.velocity = new Vector2(0,0);
-    this.moving = false;
     this.onBoard = true;
-    this.isLoaded = false;
-    this.eight_ball_in_pocket = false;
-    //let ball_img = new Image();
-    //ball_img.src = this.imgsrc;
-    //ball_img.onload = function(){
-    //  this.isLoaded = true;
-    //  this.ball_img = ball_img;
-    //}
   }
-
+  //Draw the balls on the canvas and the given x and y position
   Ball.prototype.draw = function(){
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
@@ -42,44 +39,50 @@ function Ball(type, position) {
     {
       ctx.drawImage(ball_img, x, y);
     }
+    //Checks to see if the ball is in the pocket based on the positon
     if(this.checkIfPoint())
     {
+      //Give different alerts based on the type of ball that goes into the pocket
+      //If the cue ball goes in the pocket, a warning message appears
       if(this.type=="cue")
       {
         this.pointDing();
         alert("You got the cue in the pocket! Try to avoid doing that!");
-        //let input_x = prompt("Please enter an x:", "240");
-        //let input_y = prompt("Please enter a y:", "260");
+        //Reposition cue ball at the origin if it goes into a pocket
         this.position = new Vector2(240,260);
-        console.log(this.position);
-
-        this.onBoard = false;
       }
+      //If the 8-ball goes into the pocket, then give a alert informing the user that they lost
       if(this.type=="8-ball")
       {
         alert("Oh no! You got the 8-ball in the pocket! This would mean you would lose the game");
-        this.position = new Vector2(240,260);
+        //Remove 8-ball from the board
         this.onBoard = false;
       }
+      //If the red ball goes into the pocket, then ding
       else
       {
         this.pointDing();
+        //Remove red ball from the board
         this.onBoard = false;
       }
-      console.log(this.onBoard);
     }
   }
+  //Update position of the ball based on the velocity 
   Ball.prototype.update = function(timestep){
     let v = this.velocity;
-    let velocityX = v.x;// + (timestep * this.acceleration);
-    let velocityY = v.y;// + (timestep * this.acceleration);
+    //Access x and y values of the position
+    let velocityX = v.x;
+    let velocityY = v.y;
     this.velocity = new Vector2(velocityX, velocityY);
+    //Access current position of the ball
     let p = this.position;
+    //Update x and y position based on the x and y velocity of the ball
     this.positionX = p.x + (timestep*velocityX);
     this.positionY = p.y + (timestep*velocityY);
     this.position = new Vector2(this.positionX, this.positionY);
   }
 
+  //This function checks if the ball is in the pocket if it is on the board and then returns whether or not they return a point
   Ball.prototype.checkIfPoint = function(){
     if(this.onBoard)
     {
@@ -103,31 +106,10 @@ function Ball(type, position) {
     }
 
   }
+
+  //This function plays an audio clip to indicate a point
   Ball.prototype.pointDing = function() {
     var audio = new Audio(
     'ding.mp3');
     audio.play();
   }
-
-  //Ball.prototype.collideWall() = function(ballCollided){
-  //  let x = 7;
-    //velocity of ball is negated
-  //}
-  
-
-
-// var imgTag = new Image();
-// var canvas = document.getElementById('icanvas');
-// var ctx = canvas.getContext("2d");
-// var x = canvas.width;
-// var y = 0;
-
-// imgTag.onload = animate;
-// imgTag.src = "http://i.stack.imgur.com/Rk0DW.png";   // load image
-
-// function animate() {
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);  // clear canvas
-//   ctx.drawImage(imgTag, x, y);                       // draw image at current position
-//   x -= 4;
-//   if (x > 250) requestAnimationFrame(animate)        // loop
-// }
