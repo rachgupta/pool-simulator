@@ -1,7 +1,7 @@
 # Pool50: Pool Simulator
 ## By: Rachna Gupta and Shreeja Kikkisetti
 ## How to run the code:
-To run the code, first ensure that you have access to vscode(either the desktop app or the website). Then, download the code that we have provided. To run the program, simply right click on the home.html file and open the live server to interact with the website. 
+To run the code, first ensure that you have Visual Studio Code desktop application. Then, clone the repo that we have provided and download the Live Server extension. To run the program, simply right click on the home.html file and open the live server to interact with the website. 
 ## Description: 
 Pool50 provides users a chance to improve their pool skills and attempts to teach new users how to play pool through a series of tasks. These tasks include exploring what would happen if a user were to hit the cue ball into a pocket, hit an 8 ball into a pocket, and hit a series of regular balls into a pocket via collisions. Through the development of 4 different html files, each that allows a user to interact with a different pool setup, Pool50 works to enhance the users knowledge of pool. Additionally, the user can hit balls through inputting an angle and power of the hit. The angle should be in degrees, where 0 degrees is straight down. Since, the objective of this program is to teach the user how to play pool, the user can keep hitting the cue ball until the ball (or balls) of interest goes into the pocket. 
 ## Description of files:
