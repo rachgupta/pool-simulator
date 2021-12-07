@@ -1,5 +1,6 @@
 # Pool50: Pool Simulator
 ## By: Rachna Gupta and Shreeja Kikkisetti
+## Video: https://www.youtube.com/watch?v=MzUicPQ6auo
 ## How to run the code:
 To run the code, first ensure that you have Visual Studio Code desktop application. Then, clone the repo that we have provided and download the Live Server extension. To run the program, simply right click on the home.html file and open the live server to interact with the website. 
 ## Description: 
