@@ -1,10 +1,12 @@
+//Create Stick object with x position and y position
+//Takes in a 2d vector as the input 
 function Stick(position){
     this.positionx = position.x;
     this.positiony = position.y;
-    this.rotation = 0;
 }
-
+//Draw the stick on the canvas
 Stick.prototype.draw = function(){
+    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     let stick_img = new Image();

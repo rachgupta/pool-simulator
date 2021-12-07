@@ -23,7 +23,9 @@ button, input[type="button"] {
     position: relative;
     border: 3px solid green;
   }
-  
+p {
+    font-size: 2pc;
+}
 .center {
     margin: 0;
     position: absolute;

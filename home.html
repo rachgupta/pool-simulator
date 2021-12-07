@@ -9,14 +9,12 @@
     }
 </style>
 <head>
-    <script>
-        function myFunction() {
-          window.location.href="main.html";
-        }
-        function myFunction2() {
-          window.location.href="instructions.html";
-        }
-      </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/35.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <meta charset="utf-8" />
     <title> Main Pool Page </title>
     <style>
@@ -28,12 +26,23 @@
     </div>
 </head>
 <body>
-    <div class="center">
-        <button type="button" onclick="myFunction()">Click to play now!</button>
-    </div>
-    <div class="centered">
-        <button type="button" onclick="myFunction2()">Click to learn!</button>
-    </div>
-
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="home.html">Home</a></li>
+            <li><a href="instructions.html">Instructions</a></li>
+            <li><a href="main.html">All Balls</a></li>
+            <li><a href="setup1.html">Cue Ball</a></li>
+            <li><a href="setup2.html">8 Ball</a></li>
+            <li><a href="setup3.html">Colliding Balls</a></li>
+        </ul>
+        </div>
+    </nav>
+    <p>This is pool50! Although we do not currently have a fully functioning multiplayer pool game, we have smaller, but still engaging, tasks for you.
+        Feel free to browse through the different tabs we have available to practice your pool skills. Right now, we have the following tasks:
+        get a cue ball into a pocket, get a 8 ball into a pocket, use the cue ball to get another ball into a pocket, and explore 
+        how hitting the cue ball breaks up a ball setup. We hope you have a fun time as you browse through our pool game! If you need
+        any reminders about how pool works or how our implementation works, feel free to look at the isntructions tab.
+    </p>
 </body>
 </html>

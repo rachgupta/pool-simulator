@@ -21,7 +21,7 @@ function Ball(type, position) {
     this.moving = false;
     this.onBoard = true;
     this.isLoaded = false;
-    this.cue_in_pocket = false;
+    this.eight_ball_in_pocket = false;
     //let ball_img = new Image();
     //ball_img.src = this.imgsrc;
     //ball_img.onload = function(){
@@ -33,8 +33,9 @@ function Ball(type, position) {
   Ball.prototype.draw = function(){
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
-    let x = this.positionX;
-    let y = this.positionY;
+    let p = this.position;
+    let x = p.x;
+    let y = p.y;
     let ball_img = new Image();
     ball_img.src = this.imgsrc;
     ball_img.onload = function()
@@ -43,15 +44,29 @@ function Ball(type, position) {
     }
     if(this.checkIfPoint())
     {
-      this.pointDing();
-      if(this.type!="cue")
+      if(this.type=="cue")
       {
+        this.pointDing();
+        alert("You got the cue in the pocket! Try to avoid doing that!");
+        //let input_x = prompt("Please enter an x:", "240");
+        //let input_y = prompt("Please enter a y:", "260");
+        this.position = new Vector2(240,260);
+        console.log(this.position);
+
+        this.onBoard = false;
+      }
+      if(this.type=="8-ball")
+      {
+        alert("Oh no! You got the 8-ball in the pocket! This would mean you would lose the game");
+        this.position = new Vector2(240,260);
         this.onBoard = false;
       }
       else
       {
-        this.cue_in_pocket = true;
+        this.pointDing();
+        this.onBoard = false;
       }
+      console.log(this.onBoard);
     }
   }
   Ball.prototype.update = function(timestep){
@@ -59,26 +74,33 @@ function Ball(type, position) {
     let velocityX = v.x;// + (timestep * this.acceleration);
     let velocityY = v.y;// + (timestep * this.acceleration);
     this.velocity = new Vector2(velocityX, velocityY);
-    this.positionX = this.positionX + (timestep*velocityX);
-    this.positionY = this.positionY + (timestep*velocityY);
+    let p = this.position;
+    this.positionX = p.x + (timestep*velocityX);
+    this.positionY = p.y + (timestep*velocityY);
     this.position = new Vector2(this.positionX, this.positionY);
-    console.log(this.position)
   }
 
   Ball.prototype.checkIfPoint = function(){
-    if(this.positionX>910 && (this.positionY<50 || this.positionY>425))
+    if(this.onBoard)
     {
-      return true;
+      if(this.positionX>910 && (this.positionY<50 || this.positionY>400))
+      {
+        return true;
+      }
+      else if(this.positionX>465 && (this.positionX<515) && (this.positionY>440 || this.positionY<30))
+      {
+        return true;
+      }
+      else if(this.positionX<70 && (this.positionY<50 || this.positionY>400))
+      {
+        return true;
+      }
+      return false;
     }
-    else if(this.positionX>465 && (this.positionX<515) && (this.positionY>440 || this.positionY>30))
+    else
     {
-      return true;
+      return false;
     }
-    else if(this.positionX>70 && (this.positionY<50 || this.positionY>425))
-    {
-      return true;
-    }
-    return false;
 
   }
   Ball.prototype.pointDing = function() {

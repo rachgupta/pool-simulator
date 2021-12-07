@@ -5,10 +5,10 @@ function Game(type){
     this.eight_ball = new Ball("8-ball", new Vector2(765,240));
     let mystick = new Stick(new Vector2(cue_ball_position.x-600, cue_ball_position.y));
     this.stick = mystick;
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
+    let c = document.getElementById("myCanvas");
     this.c = c;
-    this.ctx = ctx;
+    this.ctx = c.getContext("2d");
+    this.type = type;
     if(type=="full_game")
     {
         this.balls = this.initial_ball_setup();
@@ -19,7 +19,8 @@ function Game(type){
     }
     else if(type=="ball_sample")
     {
-        this.balls = [this.cue_ball,new Ball("ball", new Vector2(715,240))];
+        this.balls = [this.cue_ball, new Ball("ball", new Vector2(715,240)),new Ball("ball", new Vector2(740,255))
+        , new Ball("ball", new Vector2(740,225))];
     }
     else if(type=="eight_sample")
     {
@@ -61,6 +62,8 @@ Game.prototype.draw_board = function(){
     base_image.onload = function(){
         ctx.drawImage(base_image,0,0);
     }
+    let s = this.stick;
+    s.draw();
 }
 Game.prototype.clear = function(){
     let c = this.ctx
@@ -68,8 +71,6 @@ Game.prototype.clear = function(){
 }
 
  Game.prototype.draw = function(){
-    let s = this.stick;
-    s.draw();
     let b = this.balls;
     for (let i = 0; i < b.length; ++i)
     {
@@ -92,11 +93,11 @@ Game.prototype.animate_wrapper = function () {
         if(testBall.positionX<1000)
         {
             setTimeout(() => {window.requestAnimationFrame(animate(testBall))}
-                ,10);
+                ,5);
             setTimeout(() => {myGame.draw_board()}
-                ,10);
+                ,5);
             setTimeout(() => {myGame.checkGameStatus()}
-                ,10);
+                ,5);
         }
         else
         {
@@ -127,9 +128,19 @@ Game.prototype.start = function(){
     //loadImages(myGame.redraw());
     this.draw_board();
     this.draw();
-    let angle = prompt("Please enter an angle:", "0");
+    let angle = prompt("Please enter an angle in degrees:", "0");
     let power = prompt("Please enter a power:", "0");
-    let radians = (Math.PI/180.0)*angle
+    console.log(typeof(angle));
+    while(isNaN(angle)){
+        let new_angle = prompt("Please enter an angle in degrees:", "0");
+        angle = new_angle;
+    }
+    while(isNaN(power)){
+        let new_power = prompt("Please enter a power:", "0");
+        power = new_power;
+    }
+
+    let radians = (Math.PI/180.0)*angle;
     let xvelocity = power*Math.sin(radians);
     let yvelocity = power*Math.cos(radians);
     console.log(xvelocity)
@@ -152,6 +163,7 @@ Game.prototype.update = function(timestep){
     }
 }
 Game.prototype.checkForCollisions = function(){
+    //check for collisions between balls
     let b = this.balls;
     for (let i = 0; i < b.length; ++i)
     {
@@ -168,7 +180,6 @@ Game.prototype.checkForCollisions = function(){
                 let distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
                 if (distance<=25)
                 {
-                    console.log("dist")
                     newBalls = this.collide(ball1, ball2);
                     this.b[i] = newBalls[0];
                     this.b[j] = newBalls[1];
@@ -176,23 +187,21 @@ Game.prototype.checkForCollisions = function(){
             }
         }
     }
+
+    //check for collisions between balls and walls
     for (let i = 0; i < b.length; ++i)
     {
         let ball = b[i];
-        if(ball.positionX<50 || ball.positionX>900)
+        if(ball.position.x<50 || ball.position.x>890)
         {
-            ball.velocity = new Vector2(0.9*-ball.velocity.x, 0.9*ball.velocity.y);
+            ball.velocity = new Vector2(0.95*-ball.velocity.x, 0.95*ball.velocity.y);
+            console.log(ball.velocity);
         }
-        else if(ball.positionY<50 || ball.position.Y>450)
+        else if(ball.position.y<50 || ball.position.y>450)
         {
-            ball.velocity = new Vector2(0.9*ball.velocity.x, 0.9*-ball.velocity.y);
+            ball.velocity = new Vector2(0.95*ball.velocity.x, 0.95*-ball.velocity.y);
 
         }
-        // if(b.positionX)
-        //bounce off right wall
-        //bounce off top wall
-        //bounce off left wall
-        //bounce of bottom wall
 
     }
 }
@@ -215,26 +224,30 @@ Game.prototype.collide = function(ball1, ball2){
 }
 Game.prototype.checkGameStatus = function(){
     this.checkForCollisions();
-    if(this.eight_ball.onBoard==false)
+    this.points = 0;
+    let b = this.balls;
+    for (let i = 0; i < b.length; ++i)
     {
-        //this.game_lost()
-    }
-    else
-    {
-        this.points = 0;
-        let b = this.balls;
-        for (let i = 0; i < b.length; ++i)
+        let ball = b[i];
+        if(ball.onBoard==false)
         {
-            let ball = b[i];
-            if(ball.onBoard==false)
-            {
-                this.points = this.points + 1;
-            }
+            this.points = this.points + 1;
         }
+    }
+    let num_needed = 0;
+    if(this.type=="full_game")
+    {
         if(this.points == 14)
         {
-            //this.game_won()
+            alert("You won!")
         }
+    }
+    else if(this.type == "ball_sample"){
+        let b = this.balls
+        if(this.points == b.length - 1)
+        {
+            alert("You won!")
+        } 
     }
     var element = document.getElementById("score");
     element.innerHTML = "Your score is" + this.points;
@@ -242,7 +255,6 @@ Game.prototype.checkGameStatus = function(){
 // let cue = this.cue_ball
 // console.log(this.cue_ball)
 //let myGame = new Game("full_game");
-
 
 //myGame.start();
 //myGame.setup();

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<link href="style.css" rel="stylesheet">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/35.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>.
+    <div class="header">
+        <h1 align="center", >Colliding Balls!</h1>
+    </div>
+   
+    <meta charset="utf-8" />
+    <title> Main Pool Page </title>
+    <style>
+    	* { padding: 0; margin: 0; }
+    	canvas { background: #eee; display: block; margin: 0 auto; }
+    </style>
+
+</head>
+
+<body style="background-color:grey;">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="instructions.html">Instructions</a></li>
+            <li><a href="main.html">All Balls</a></li>
+            <li><a href="setup1.html">Cue Ball</a></li>
+            <li><a href="setup2.html">8 Ball</a></li>
+            <li class="active"><a href="setup3.html">Colliding Balls</a></li>
+        </ul>
+        </div>
+    </nav>
+<div class="info">
+    <button type="button" onclick="start_game()">Click to hit the cue ball!</button>
+</div>
+<div class="scorebar">
+    <p id = "score"> Your score is 0</p>
+</div>
+
+<canvas id="myCanvas" width="1000" height="500"></canvas>
+
+<script src="Vector2.js"></script>
+<script src="Load.js"></script>
+<script src="Ball.js"></script>
+<script src="Stick.js"></script>
+<script src="Game.js"></script>
+<script> 
+    let myGame = new Game("ball_sample");
+    myGame.setup();
+    function start_game() {
+        
+        myGame.start();
+    }
+</script>
+<!-- <script> src ="Mouse.js"</script> -->
+<script>
+    //loadImages(myGame.redraw())
+</script>
+
+
+</body>
+</html>

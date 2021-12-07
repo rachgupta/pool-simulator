@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/35.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <div class="header">
-        <h1 align="center", >How to Play Pool50!</h1>
+        <h1 align="center", >How to Play Pool!</h1>
     </div>
     <meta charset="utf-8" />
     <title> Main Pool Page </title>
-    <script>
-        function myFunction() {
-          window.location.href="main.html";
-        }
-      </script>
+
 
 </head>
 <body style="background-color:grey;">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="home.html">Home</a></li>
+            <li class="active"><a href="instructions.html">Instructions</a></li>
+            <li><a href="main.html">All Balls</a></li>
+            <li><a href="setup1.html">Cue Ball</a></li>
+            <li><a href="setup2.html">8 Ball</a></li>
+            <li><a href="setup3.html">Colliding Balls</a></li>
+        </ul>
+        </div>
+    </nav>
     <p>Eight-ball pool can be played as a singles or doubles game and is played
         with cues and 16 balls, 15 object balls, and one cue ball (the ball the players strike 
         to try and hit the other balls). Pool can be a relatively high-speed game compared to 
@@ -37,11 +50,21 @@
         <li>The opposing player illegally pots the 8 ball before clearing their own set of balls.</li>
         <li>The 8 ball is knocked of the table by the opposition.</li>
     </ul>
-    <div class="center">
-        <button type="button" onclick="myFunction()">Click to play now!</button>
-    </div>
-
+    <h2>How to use our website</h2>
+    <p>
+        Unlike your typical game of pool, we have smaller tasks for you to try out. These tasks include trying to hit the cue ball into a pocket, trying to hit the cue ball such that it collides with another ball that rolls into a pocket, and trying to shoot the 8 ball into a pocket. 
+        Here is how you can shoot the cue ball through our website:    <
     </p>
+    <ul>
+        <li>Click the button titled “Click to hit the cue ball”</li>
+        <li>Once you click the button, you will be prompted to enter a angle and power of the hit</li>
+        <li>Try to give your best estimate of the angle and power to land the designated ball into a pocket</li>
+        <li>You will know if you were successful if you hear a ring and your score is updated</li>
+
+        <li>Try to shoot as many times as you would like</li>
+
+    </ul>
+
 
 <canvas id="myCanvas" width="1024" height="566"></canvas>
 

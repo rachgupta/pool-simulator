@@ -3,13 +3,32 @@
 <link href="style.css" rel="stylesheet">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/35.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>.
 
     <div class="header">
         <h1 align="center", >Pool50!</h1>
     </div>
-    <div class="info">
-        <button type="button" onclick="myFunction()">Click to learn!</button>
-    </div>
+</head>
+
+<body style="background-color:grey;">
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="instructions.html">Instructions</a></li>
+            <li class="active"><a href="main.html">All Balls</a></li>
+            <li><a href="setup1.html">Cue Ball</a></li>
+            <li><a href="setup2.html">8 Ball</a></li>
+            <li><a href="setup3.html">Colliding Balls</a></li>
+        </ul>
+        </div>
+    </nav>
+
     <div class="info">
         <button type="button" onclick="start_game()">Click to hit the cue ball!</button>
     </div>
@@ -24,21 +43,14 @@
     	canvas { background: #eee; display: block; margin: 0 auto; }
     </style>
     <script>
-        function myFunction() {
-            window.location.href="instructions.html";
+
+        function gotoS1() {
+            window.location.href="setup1.html";
         }
-        </script>
-</head>
-
-<body style="background-color:grey;">
-<!-- <form>
-    <label for="xvel">X velocity:</label><br>
-    <input type="text" id="xvel" name="xvel" value = "0"><br>
-    <label for="yvel">Y velocity:</label><br>
-    <input type="text" id="yvel" name="yvel" value = "0">
-    <input type="submit" value="Submit">
-</form> -->
-
+        function gotoS2() {
+            window.location.href="setup2.html";
+        }
+     </script>
 
 <canvas id="myCanvas" width="1000" height="500"></canvas>
 
@@ -55,11 +67,6 @@
         myGame.start();
     }
 </script>
-<!-- <script> src ="Mouse.js"</script> -->
-<script>
-    //loadImages(myGame.redraw())
-</script>
-
 
 </body>
 </html>
