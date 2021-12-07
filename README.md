@@ -1,5 +1,5 @@
 # Pool50: Pool Simulator
-
+## By: Rachna Gupta and Shreeja Kikkisetti
 ## How to run the code:
 To run the code, first ensure that you have access to vscode(either the desktop app or the website). Then, download the code that we have provided. To run the program, simply right click on the home.html file and open the live server to interact with the website. 
 ## Description: 
